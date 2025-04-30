@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gallifreyan Sociogram</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body {
+      background: #003b6f;
+      margin: 0;
+      overflow: hidden;
+      color: white;
+      font-family: sans-serif;
+    }
+
+    svg {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    @font-face {
+      font-family: 'Gallifreyan';
+      src: url('fonts/ws_simple_gallifreyan.woff2') format('woff2'),
+           url('fonts/ws_simple_gallifreyan.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    .node {
+      stroke: white;
+      stroke-width: 1px;
+    }
+
+    .link {
+      stroke: white;
+      stroke-opacity: 0.3;
+    }
+
+    .circle-outline {
+      stroke: white;
+      fill: none;
+      stroke-width: 1px;
+      stroke-dasharray: 2 2;
+    }
+
+    .arc, .glyph {
+      fill: none;
+      stroke: white;
+      stroke-opacity: 0.3;
+      stroke-width: 1.5px;
+    }
+
+    .glyph-text {
+      font-family: 'Gallifreyan', sans-serif;
+      font-size: 14px;
+      fill: white;
+      text-anchor: middle;
+      dominant-baseline: middle;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <svg></svg>
+  <script>
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const svg = d3.select("svg");
+
+    d3.csv("edges.csv").then(rawData => {
+      drawGraph(rawData);
+    });
+
+    function drawGraph(rawData) {
+      svg.selectAll("*").remove();
+
+      const data = rawData.map(d => ({
+        source: d.from,
+        target: d.to,
+        year: +d.year,
+        source_book: d.source_book || d.book_title,
+        target_book: d.target_book || d.book_title
+      }));
+
+      const nodeMeta = new Map();
+      data.forEach(d => {
+        if (!nodeMeta.has(d.source)) nodeMeta.set(d.source, d.source_book);
+        if (!nodeMeta.has(d.target)) nodeMeta.set(d.target, d.target_book);
+      });
+
+      const bookTitles = Array.from(new Set([...nodeMeta.values()]));
+      const color = d3.scaleOrdinal(d3.schemeTableau10).domain(bookTitles);
+
+      const groups = d3.groups(data, d => d.year);
+      const center = { x: width / 2, y: height / 2 };
+      const radius = 60;
+
+      groups.forEach(([groupId, links], i) => {
+        const angle = (i / groups.length) * 2 * Math.PI;
+        const groupCenter = {
+          x: center.x + Math.cos(angle) * 300,
+          y: center.y + Math.sin(angle) * 300
+        };
+
+        const nodeSet = new Set();
+        links.forEach(d => {
+          nodeSet.add(d.source);
+          nodeSet.add(d.target);
+        });
+        const nodes = Array.from(nodeSet).map(id => ({ id }));
+
+        const simulation = d3.forceSimulation(nodes)
+          .force("link", d3.forceLink(links).id(d => d.id).distance(50))
+          .force("charge", d3.forceManyBody().strength(-80))
+          .force("radial", d3.forceRadial(radius, groupCenter.x, groupCenter.y))
+          .stop();
+
+        for (let j = 0; j < 300; j++) simulation.tick();
+
+        const g = svg.append("g")
+          .attr("class", "group")
+          .attr("transform", `translate(${groupCenter.x},${groupCenter.y})`);
+
+        g.append("circle")
+          .attr("r", radius + 15)
+          .attr("stroke", "white")
+          .attr("stroke-opacity", 0.2)
+          .attr("stroke-dasharray", "4 2")
+          .attr("fill", "none");
+
+        g.append("circle")
+          .attr("r", radius)
+          .attr("class", "circle-outline");
+
+        for (let a = 0; a < 4; a++) {
+          const arcGen = d3.arc()
+            .innerRadius(radius - 10)
+            .outerRadius(radius + 10)
+            .startAngle(Math.random() * 2 * Math.PI)
+            .endAngle(Math.random() * 2 * Math.PI);
+          g.append("path")
+            .attr("d", arcGen())
+            .attr("class", "arc")
+            .attr("transform", `rotate(${Math.random() * 360})`);
+        }
+
+        for (let j = 0; j < 3; j++) {
+          const r = 10 + Math.random() * (radius - 20);
+          const angle = Math.random() * 2 * Math.PI;
+          const x = Math.cos(angle) * r;
+          const y = Math.sin(angle) * r;
+
+          g.append("path")
+            .attr("class", "glyph")
+            .attr("d", d3.arc()({
+              innerRadius: 4,
+              outerRadius: 6,
+              startAngle: 0,
+              endAngle: 2 * Math.PI
+            }))
+            .attr("transform", `translate(${x},${y})`);
+        }
+
+        g.selectAll("line")
+          .data(links)
+          .enter()
+          .append("line")
+          .attr("class", "link")
+          .attr("x1", d => d.source.x - groupCenter.x)
+          .attr("y1", d => d.source.y - groupCenter.y)
+          .attr("x2", d => d.target.x - groupCenter.x)
+          .attr("y2", d => d.target.y - groupCenter.y);
+
+        g.selectAll("circle.node")
+          .data(nodes)
+          .enter()
+          .append("circle")
+          .attr("class", "node")
+          .attr("r", 6)
+          .attr("cx", d => d.x - groupCenter.x)
+          .attr("cy", d => d.y - groupCenter.y)
+          .attr("fill", d => color(nodeMeta.get(d.id)));
+
+        // Gallifreyan glyphs using font
+        g.selectAll("text.glyph-text")
+          .data(nodes)
+          .enter()
+          .append("text")
+          .attr("class", "glyph-text")
+          .attr("x", d => d.x - groupCenter.x)
+          .attr("y", d => d.y - groupCenter.y)
+          .text(d => getInitial(d.id));
+
+        let angleDeg = 0;
+        let velocity = 1.5 + Math.random();
+        // function rotate() {
+        //   if (velocity > 0.01) {
+        //     angleDeg += velocity;
+        //     velocity *= 0.98;
+        //     g.attr("transform", `translate(${groupCenter.x},${groupCenter.y}) rotate(${angleDeg})`);
+        //     requestAnimationFrame(rotate);
+        //   }
+        // }
+        // rotate();
+      });
+    }
+
+    function getInitial(name) {
+      return name ? name.trim()[0].toUpperCase() : "?";
+    }
+  </script>
+</body>
+</html>

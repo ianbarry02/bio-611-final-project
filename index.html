@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<!--
+	Stellar by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Ian's Project | Home</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<span class="logo"><img src="images/site-name-logo.svg" alt="" /></span>
+						<p>Data Visualization (BIO 611) Spring 2025<br />
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html" class="active">Home</a></li>
+							<li><a href="all-book-visualizations.html">Data</a></li>
+							<!--li><a href="final-index.html">Index</a></li-->
+							<li><a href="about.html">Visualizations</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						
+						
+							<!-- Introduction -->
+							<section id="intro" class="main">
+
+								<div class="spotlight">
+									<div class="content">
+										<header class="major">
+											<h2>About My Project</h2>
+										</header>
+										</span>
+										<p>
+											<i>Doctor Who</i> is a TV show from the UK. It was initially televised between 1963 and 1989. 
+											During that time, deuteragonists and antagonists changed frequently but the main character remained, despite changes in appearance and demeanor, a constant presence. 
+											I hypothesize that changes in casting and frequency of interactions sometimes reflected social attitudes in the real world. These visualizations represent a first step toward 
+											the generation of a more substantial project with more data drawn from resources outside of what I've generated.
+										</p>
+										<p>
+											</p>
+										<p><span class="image right"><img src="images/liz-shaw.webp" alt="" /></span>(For instance, Dr. Elizabeth Shaw, a deuteragonist on the show in the early 1970s with multiple PhDs in various STEM subjects (pictured at left), was only featured for one season. Caroline John — the actress who played Dr. Shaw — had her own reasons to leave the show after one season but was informed that she was not going to be asked back in any case because Dr. Shaw was too intelligent to be the Doctor's companion any longer. Because she isn't featured in many episodes and misogynist attitudes likely reduced her screen time, I bet Dr. Shaw is "less important" in social networks than women whose intelligence is more starkly contrasted with the Doctor's on the show. But you'll have to stay tuned to find that out — I don't have all the data I need to draw large-scale conclusions about Dr. Shaw yet.)</p>
+
+										<p>
+											Target Novelizations transformed many <i>Doctor Who</i> episodes into books. Although these novelizations were published later, 
+											I wanted to find a way to speedily extract information about who is interacting with whom in <i>Doctor Who</i> stories. I've developed 
+											detailed protocols for coding interactions in television stories and novelizations. While manually coding interactions in TV stories takes approximately 
+											one and a half hours per 25-minute episode, extracting interactions from books takes between 30 minutes and an hour — and one book is the equivalent of 
+											between two and ten TV episodes.
+										</p>
+										<br />
+									</div>
+								</div>
+								</section>
+							
+								<section class="main">
+								<header class="major">
+									<h2>Overview: All Data</h2>
+								</header>
+
+								<h2>Gallifreyan Circle Networks</h2>
+								<p>Guide to what it means:</p>
+								<ul>
+									<li><b>Big dotted circles</b> — one year of data</li>
+									<li><b>Small filled circles</b> — one character; these are filled according to what story they belong to</li>
+									<li><b>Lines between small filled circles</b> — interactions between characters</li>
+									<li><b>Crazy circular writing</b> — the name of the character written in circular Gallifreyan (see below)</li>
+									<li><b>Faint lines and circles</b> — decoration (I'm just a little guy with a liberal arts degree)</li>
+								</ul>
+								
+								<iframe style="border: 0; width:100%; height: 1000px; overflow: auto;" src="circles-vis/index.html"></iframe>
+								<br/>
+								<br/>
+								<p>
+									This force graph was produced in D3 and took the most blood, sweat, and tears (and cargo culting and YouTube tutorials) to produce so I'm putting it at the top... even though it takes forever and a day to load. 
+									Please enjoy. Please.
+								</p>
+								<p>
+									This visualization was inspired by <a href="https://www.wikihow.com/Write-in-Gallifreyan" target="blank">circular Gallifreyan</a>, a fictional written language from the <i>Doctor Who</i> franchise. 
+									Before you ask, no, no I do not know how to write in circular Gallifreyan. But some <s>nerds</s> lovely folks have not only figured out how to do it — they've made it into fonts as well.
+									I have an unfathomable amount of experience fiddling with font files from the months I spent at the beginning of the semester trying to shoehorn OpenDyslexic font into RStudio. (Don't ask me how that's going.) 
+									So, it was fairly straightforward figuring out how the JavaScript, HTML, and CSS work together to read downloaded font files.
+								</p>
+
+								<br/>
+								<hr/>
+								<br/>
+
+								<h2>Legitimate Sociogram</h2>
+								<p>
+									This is your run-of-the-mill sociogram showing characters and their directed interactions. I produced this in Gephi and exported it as a JavaScript 
+									template to insert here. Users can click and drag the sociogram around, zoom in and out, and click on nodes to view connections and statistics for specific characters.
+								</p>
+
+								<iframe style="border: 0; width:100%; height: 650px; overflow: auto;" src="networks/all_target_network/index.html"></iframe>
+
+
+							</section>
+						</section>
+
+
+						<!-- Get Started -->
+							<section id="cta" class="main special">
+								<header class="major">
+									<!--h2>Congue imperdiet</h2-->
+									<p>"...in 900 years of time and space I haven't met anyone who wasn't important."<br />
+									- The Doctor</p>
+								</header>
+								<footer class="major">
+									<ul class="actions special">
+										<li><a href="all-book-visualizations.html" class="button primary">Explore Visualizations</a></li>
+										<!--li><a href="final-index.html" class="button">Visualization Index</a></li-->
+									</ul>
+								</footer>
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">&copy; Ian Barry. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

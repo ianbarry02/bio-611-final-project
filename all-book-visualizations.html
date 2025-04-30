@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<!--
+	Stellar by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Ian's Project | Data</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				<header id="header">
+					<h1>Data Collection & Cleaning</h1>
+					<p>All completed visualizations of social networks extracted from <i>Doctor Who</i> books.</p>
+				</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="all-book-visualizations.html" class="active">Data</a></li>
+							<!--li><a href="final-index.html">Index</a></li-->
+							<li><a href="about.html">Visualizations</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						
+						<!-- Introduction -->
+							<!--section id="intro" class="main">
+								<div class="spotlight">
+									<div class="content">
+										<header class="major">
+											<h2>Welcome to the Vortex</h2>
+										</header>
+										<p>
+											The "EigenVortex" — a portmanteau indexing the analytical power of Eigenvector centrality and
+											the allure of the Time Vortex — is a project that seeks to quantify social interactions within 
+											the <i>Doctor Who</i> universe and transform that data into an interactive tool.
+										</p>
+										<ul class="actions">
+											<li><a href="test.html" class="button">See an Example</a></li>
+										</ul>
+									</div>
+									<span class="image"><img src="images/vortex.jpg" alt="" /></span>
+								</div>
+							</section-->
+						
+							<!-- Introduction -->
+
+
+						<!-- First Section -->
+							<section id="first" class="main special">
+								<header class="major">
+									<h2>Data Collection</h2>
+								</header>
+								<ul class="features">
+									<li>
+										<span class="icon solid major style5 fa-copy"></span>
+										<h3>Corpus Assembly</h3>
+										<p>I selected 20 novelizations of <i>Doctor Who</i> TV stories and used OCR to convert them from PDFs to text files.</p>
+									</li>
+									<li>
+										<span class="icon solid major style5 fa-code"></span>
+										<h3>Data Extraction</h3>
+										<p>I used natural language processing in Python to extract directed interactions from each novelization.</p>
+									</li>
+									<li>
+										<span class="icon solid major style5 fa-laptop"></span>
+										<h3>Data Visualization</h3>
+										<p>I generated social network statistics in Gephi and used Gephi and R to visualize these data and raw interactions.</p>
+									</li>
+								</ul>
+
+							</section>
+
+							<section class="main">
+
+								<!-- Corpus information -->
+								<h2>Final Corpus</h2>
+
+								<div class="table-wrapper">
+									<table class="alt">
+										<thead>
+											<tr>
+												<th>Book Title</th>
+												<th>Year*</th>
+												<th>Doctor</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><i>Doctor Who and the Android Invasion</i></td>
+												<td></td>
+												<td>Fourth</td>
+											</tr>
+											<tr>
+												<td><i>Doctor Who and the Androids of Tara</i></td>
+												<td></td>
+												<td>Fourth</td>
+											</tr>
+											<tr>
+												<td><i>Doctor Who and the Ark in Space</i></td>
+												<td></td>
+												<td>Fourth</td>
+											</tr>
+											<tr>
+												<td><i>Doctor Who and the Armageddon Factor</i></td>
+												<td></td>
+												<td>Fourth</td>
+											</tr>
+											<tr>
+												<td><i>Doctor Who and the Brain of Morbius</i></td>
+												<td></td>
+												<td>Fourth</td>
+											</tr>
+											<tr>
+												<td><i>Doctor Who and the Carnival of Monsters</i></td>
+												<td></td>
+												<td>Third</td>
+											</tr>
+											<tr>
+												<td><i>Doctor Who and the Cave Monsters</i></td>
+												<td></td>
+												<td>Third</td>
+											</tr>
+											<tr>
+												<td><i>Doctor Who and the Claws of Axos</i></td>
+												<td></td>
+												<td>Third</td>
+											</tr>
+											<tr>
+												<td><i>Doctor Who and the Creature from the Pit</i></td>
+												<td></td>
+												<td>Fourth</td>
+											</tr>
+											<tr>
+												<td><i>Doctor Who and the Curse of Peladon</i></td>
+												<td></td>
+												<td>Third</td>
+											</tr>
+											<tr>
+												<td><i>Doctor Who and the Dæmons</i></td>
+												<td></td>
+												<td>Third</td>
+											</tr>
+											<tr>
+												<td><i>Doctor Who Death to the Daleks</i></td>
+												<td></td>
+												<td>Third</td>
+											</tr>
+											<tr>
+												<td><i>Doctor Who and the Dinosaur Invasion</i></td>
+												<td></td>
+												<td>Third</td>
+											</tr>
+											<tr>
+												<td><i>Doctor Who and the Genesis of the Daleks</i></td>
+												<td></td>
+												<td>Fourth</td>
+											</tr>
+											<tr>
+												<td><i>Doctor Who and the Giant Robot</i></td>
+												<td></td>
+												<td>Fourth</td>
+											</tr>
+											<tr>
+												<td><i>Doctor Who and the Green Death</i></td>
+												<td></td>
+												<td>Third</td>
+											</tr>
+											<tr>
+												<td><i>Doctor Who and the Hand of Fear</i></td>
+												<td></td>
+												<td>Fourth</td>
+											</tr>
+											<tr>
+												<td><i>Doctor Who and the Loch Ness Monster</i></td>
+												<td></td>
+												<td>Fourth</td>
+											</tr>
+											<tr>
+												<td><i>Doctor Who and the Planet of the Spiders</i></td>
+												<td></td>
+												<td>Third</td>
+											</tr>
+											<tr>
+												<td><i>Doctor Who and the Space War</i></td>
+												<td></td>
+												<td>Third</td>
+											</tr>
+										</tbody>
+									</table>
+									<p><i>* These are the years the television stories each novelization is based on were aired. They are logged this way because the novelizations are stand-ins for television data and assumed to be faithful to the television plots.</i></p>
+
+								<!-- Data extraction information -->
+								<h2>Data Extraction & Cleaning</h2>
+
+								<!-- Data visualization information -->
+								<h2>Data Visualization</h2>
+
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<p class="copyright">&copy; Ian Barry. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+				</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
