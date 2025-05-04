@@ -18,6 +18,7 @@
       height: 100vh;
     }
 
+    /* Add Gallifreyan font (WOFF files are in directory) */
     @font-face {
       font-family: 'Gallifreyan';
       src: url('fonts/ws_simple_gallifreyan.woff2') format('woff2'),
@@ -91,10 +92,12 @@
       const bookTitles = Array.from(new Set([...nodeMeta.values()]));
       const color = d3.scaleOrdinal(d3.schemeTableau10).domain(bookTitles);
 
+      // Group data by year (each big circle is a year)
       const groups = d3.groups(data, d => d.year);
       const center = { x: width / 2, y: height / 2 };
       const radius = 60;
 
+      // Put smaller circles on larger year circles
       groups.forEach(([groupId, links], i) => {
         const angle = (i / groups.length) * 2 * Math.PI;
         const groupCenter = {
@@ -109,6 +112,7 @@
         });
         const nodes = Array.from(nodeSet).map(id => ({ id }));
 
+        // Force directed graph
         const simulation = d3.forceSimulation(nodes)
           .force("link", d3.forceLink(links).id(d => d.id).distance(50))
           .force("charge", d3.forceManyBody().strength(-80))
@@ -193,6 +197,8 @@
 
         let angleDeg = 0;
         let velocity = 1.5 + Math.random();
+
+        // Rotation function (overloads computer so I've commented it out)
         // function rotate() {
         //   if (velocity > 0.01) {
         //     angleDeg += velocity;
@@ -205,6 +211,7 @@
       });
     }
 
+    // Overlay Gallifreyan first letter of character name on node that represents them
     function getInitial(name) {
       return name ? name.trim()[0].toUpperCase() : "?";
     }

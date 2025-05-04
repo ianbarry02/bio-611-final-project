@@ -19,8 +19,7 @@
 
 				<!-- Header -->
 				<header id="header">
-					<h1>Data Collection & Cleaning</h1>
-					<p>All completed visualizations of social networks extracted from <i>Doctor Who</i> books.</p>
+					<h1>Methods: Data Collection & Visualization</h1>
 				</header>
 
 				<!-- Nav -->
@@ -35,29 +34,6 @@
 
 				<!-- Main -->
 					<div id="main">
-						
-						<!-- Introduction -->
-							<!--section id="intro" class="main">
-								<div class="spotlight">
-									<div class="content">
-										<header class="major">
-											<h2>Welcome to the Vortex</h2>
-										</header>
-										<p>
-											The "EigenVortex" — a portmanteau indexing the analytical power of Eigenvector centrality and
-											the allure of the Time Vortex — is a project that seeks to quantify social interactions within 
-											the <i>Doctor Who</i> universe and transform that data into an interactive tool.
-										</p>
-										<ul class="actions">
-											<li><a href="test.html" class="button">See an Example</a></li>
-										</ul>
-									</div>
-									<span class="image"><img src="images/vortex.jpg" alt="" /></span>
-								</div>
-							</section-->
-						
-							<!-- Introduction -->
-
 
 						<!-- First Section -->
 							<section id="first" class="main special">
@@ -101,113 +77,158 @@
 										<tbody>
 											<tr>
 												<td><i>Doctor Who and the Android Invasion</i></td>
-												<td></td>
+												<td>1975</td>
 												<td>Fourth</td>
 											</tr>
 											<tr>
 												<td><i>Doctor Who and the Androids of Tara</i></td>
-												<td></td>
+												<td>1978</td>
 												<td>Fourth</td>
 											</tr>
 											<tr>
 												<td><i>Doctor Who and the Ark in Space</i></td>
-												<td></td>
+												<td>1975</td>
 												<td>Fourth</td>
 											</tr>
 											<tr>
 												<td><i>Doctor Who and the Armageddon Factor</i></td>
-												<td></td>
+												<td>1979</td>
 												<td>Fourth</td>
 											</tr>
 											<tr>
 												<td><i>Doctor Who and the Brain of Morbius</i></td>
-												<td></td>
+												<td>1976</td>
 												<td>Fourth</td>
 											</tr>
 											<tr>
 												<td><i>Doctor Who and the Carnival of Monsters</i></td>
-												<td></td>
+												<td>1973</td>
 												<td>Third</td>
 											</tr>
 											<tr>
 												<td><i>Doctor Who and the Cave Monsters</i></td>
-												<td></td>
+												<td>1970</td>
 												<td>Third</td>
 											</tr>
 											<tr>
 												<td><i>Doctor Who and the Claws of Axos</i></td>
-												<td></td>
+												<td>1971</td>
 												<td>Third</td>
 											</tr>
 											<tr>
 												<td><i>Doctor Who and the Creature from the Pit</i></td>
-												<td></td>
+												<td>1979</td>
 												<td>Fourth</td>
 											</tr>
 											<tr>
 												<td><i>Doctor Who and the Curse of Peladon</i></td>
-												<td></td>
+												<td>1972</td>
 												<td>Third</td>
 											</tr>
 											<tr>
 												<td><i>Doctor Who and the Dæmons</i></td>
-												<td></td>
+												<td>1971</td>
 												<td>Third</td>
 											</tr>
 											<tr>
 												<td><i>Doctor Who Death to the Daleks</i></td>
-												<td></td>
+												<td>1974</td>
 												<td>Third</td>
 											</tr>
 											<tr>
 												<td><i>Doctor Who and the Dinosaur Invasion</i></td>
-												<td></td>
+												<td>1974</td>
 												<td>Third</td>
 											</tr>
 											<tr>
 												<td><i>Doctor Who and the Genesis of the Daleks</i></td>
-												<td></td>
+												<td>1975</td>
 												<td>Fourth</td>
 											</tr>
 											<tr>
 												<td><i>Doctor Who and the Giant Robot</i></td>
-												<td></td>
+												<td>1975</td>
 												<td>Fourth</td>
 											</tr>
 											<tr>
 												<td><i>Doctor Who and the Green Death</i></td>
-												<td></td>
+												<td>1973</td>
 												<td>Third</td>
 											</tr>
 											<tr>
 												<td><i>Doctor Who and the Hand of Fear</i></td>
-												<td></td>
+												<td>1976</td>
 												<td>Fourth</td>
 											</tr>
 											<tr>
 												<td><i>Doctor Who and the Loch Ness Monster</i></td>
-												<td></td>
+												<td>1975</td>
 												<td>Fourth</td>
 											</tr>
 											<tr>
 												<td><i>Doctor Who and the Planet of the Spiders</i></td>
-												<td></td>
+												<td>1974</td>
 												<td>Third</td>
 											</tr>
 											<tr>
 												<td><i>Doctor Who and the Space War</i></td>
-												<td></td>
+												<td>1973</td>
 												<td>Third</td>
 											</tr>
 										</tbody>
 									</table>
 									<p><i>* These are the years the television stories each novelization is based on were aired. They are logged this way because the novelizations are stand-ins for television data and assumed to be faithful to the television plots.</i></p>
+									<br/>
+									<hr/>
+									<br/>
 
 								<!-- Data extraction information -->
-								<h2>Data Extraction & Cleaning</h2>
+								<h2>Data Extraction, Cleaning, & Visualization Methods</h2>
+								<p><span class="image right"><img src="methods_example/Slide1.png" alt="" /></span>
+									<b>Step 1. Create text file, tokenize text file, and extract character names.</b>
+									<br/>
+									I downloaded my <i>Doctor Who</i> corpus from the Internet Archive. Each book was in PDF format, so I used a simple OCR script in Python to convert them to text files. Then, using the <code>spacy</code> and <code>pandas</code> packages in Python, I broke the text down word by word, scraped character names from it, and assembled a CSV file with all of those names. I then manually cleaned this file to remove duplicate names and the occasional object that was tacked onto the end. At right is a representation of name detection in a text file.
+								</p>
+								<br/>
+								<p>
+									<b>Step 2. Extract relationships from text file.</b>
+									<br/>
+									Again using <code>spacy</code> in Python, I compared my character names dataframe to the text and logged interactions as instances in which character names appeared in close proximity to each other. I assembled these interactions into a dataframe using <code>pandas</code>. 									I modified this script from <a href="https://youtu.be/fAHkJ_Dhr50?si=4PcrOLpKEijyQ8de" target="blank">a script written by Thu Vu to extract interactions from texts in <i>The Witcher</i> series.</a>
+ 									Below is a representation of how this Python script iterates through a text file to identify interactions between characters.
+								</p>
+								<div class="box alt">
+									<div class="row gtr-uniform">
+										<div class="col-4"><span class="image fit"><img src="methods_example/Slide2.png" alt="" /></span></div>
+										<div class="col-4"><span class="image fit"><img src="methods_example/Slide3.png" alt="" /></span></div>
+										<div class="col-4"><span class="image fit"><img src="methods_example/Slide4.png" alt="" /></span></div>
+									</div>
+								</div>
+								<p>
+									In the example above, two bi-directional interactions between the Doctor and Harry are detected and one bi-directional interaction between Harry and Sarah is detected. A total of six interactions would be logged in the interaction dataframe.
+								</p>
+								<br/>
 
-								<!-- Data visualization information -->
-								<h2>Data Visualization</h2>
+								<p>
+									<b>Step 3. Clean interaction data.</b>
+									<br/>
+									I wrote several functions in R to help me clean my interaction data. Together, these functions iterate through each unique combination of character names in the raw interactions data, present them to the user, and use user input to determine whether to delete all such combinations or keep them in the cleaned dataframe. Then, all variations of a character's name are matched with their full name in the manually cleaned character name file and changed to their full name. This standardizes the appearance of every character across all stories they appear in, which makes combining interaction dataframes and calculating social network statistics across multiple texts much easier.
+								</p>
+								<br/>
+
+								<p>
+									<b>Step 4. Calculate social network statistics with Gephi.</b>
+									<br/>
+									I imported my clean name (node) and interaction (edge) dataframes into Gephi. Using Gephi, I calculated social network statistics for each book, customized the appearance of my sociogram (i.e. by changing node size to reflect character degree, changing node color to correspond to character modularity, and repelling points from each other to make all labels visible simultaneously), and exported the sociogram as a JavaScript template. Each of these 20 sociograms are embedded on this site on pages for the Third and Fourth Doctors accessible under the "Visualizations" tab. 
+								</p>
+								<p>
+									I used R to combine all of my interaction (edge) dataframes and repeated my sociogram customization and social network statistics calculations with Gephi as described above. This produced the master sociogram viewable on the "Home" page.
+								</p>
+								<br/>
+
+								<p>
+									<b>Step 5. Visualize data.</b>
+									I used D3 (JavaScript), Gephi, and R to produce all of my visualizations. Some of the interactive components on this website, like buttons that allow the user to switch between visualizations, are rendered in JavaScript and HTML. This website is a modified template from HTML5UP and is written in CSS, JavaScript, and HTML. The data collection example images above were produced in PowerPoint and feature images from BBC Worldwide, Ltd. All external images on this site are the property of BBC Worldwide, Ltd. and are not my property.
+								</p>
 
 							</section>
 

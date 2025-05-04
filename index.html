@@ -12,6 +12,13 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
+
+	<script>
+		function switchIframe(src) {
+			document.getElementById('networkFrame').src = src;
+		}
+	</script>
+
 	<body class="is-preload">
 
 		<!-- Wrapper -->
@@ -43,7 +50,7 @@
 								<div class="spotlight">
 									<div class="content">
 										<header class="major">
-											<h2>About My Project</h2>
+											<h2>Introduction</h2>
 										</header>
 										</span>
 										<p>
@@ -57,11 +64,11 @@
 										<p><span class="image right"><img src="images/liz-shaw.webp" alt="" /></span>(For instance, Dr. Elizabeth Shaw, a deuteragonist on the show in the early 1970s with multiple PhDs in various STEM subjects (pictured at left), was only featured for one season. Caroline John — the actress who played Dr. Shaw — had her own reasons to leave the show after one season but was informed that she was not going to be asked back in any case because Dr. Shaw was too intelligent to be the Doctor's companion any longer. Because she isn't featured in many episodes and misogynist attitudes likely reduced her screen time, I bet Dr. Shaw is "less important" in social networks than women whose intelligence is more starkly contrasted with the Doctor's on the show. But you'll have to stay tuned to find that out — I don't have all the data I need to draw large-scale conclusions about Dr. Shaw yet.)</p>
 
 										<p>
-											Target Novelizations transformed many <i>Doctor Who</i> episodes into books. Although these novelizations were published later, 
+											Target Books transformed many <i>Doctor Who</i> episodes into books. Although these novelizations were published later, 
 											I wanted to find a way to speedily extract information about who is interacting with whom in <i>Doctor Who</i> stories. I've developed 
 											detailed protocols for coding interactions in television stories and novelizations. While manually coding interactions in TV stories takes approximately 
 											one and a half hours per 25-minute episode, extracting interactions from books takes between 30 minutes and an hour — and one book is the equivalent of 
-											between two and ten TV episodes.
+											between two and ten TV episodes. Therefore, I decided to extract interaction data from <i>Doctor Who</i> novelizations as a proxy for interaction data from the show.
 										</p>
 										<br />
 									</div>
@@ -74,13 +81,13 @@
 								</header>
 
 								<h2>Gallifreyan Circle Networks</h2>
-								<p>Guide to what it means:</p>
+								<p>Guide to symbolism:</p>
 								<ul>
 									<li><b>Big dotted circles</b> — one year of data</li>
 									<li><b>Small filled circles</b> — one character; these are filled according to what story they belong to</li>
 									<li><b>Lines between small filled circles</b> — interactions between characters</li>
 									<li><b>Crazy circular writing</b> — the name of the character written in circular Gallifreyan (see below)</li>
-									<li><b>Faint lines and circles</b> — decoration (I'm just a little guy with a liberal arts degree)</li>
+									<li><b>Faint lines and circles</b> — decoration</li>
 								</ul>
 								
 								<iframe style="border: 0; width:100%; height: 1000px; overflow: auto;" src="circles-vis/index.html"></iframe>
@@ -92,8 +99,8 @@
 								</p>
 								<p>
 									This visualization was inspired by <a href="https://www.wikihow.com/Write-in-Gallifreyan" target="blank">circular Gallifreyan</a>, a fictional written language from the <i>Doctor Who</i> franchise. 
-									Before you ask, no, no I do not know how to write in circular Gallifreyan. But some <s>nerds</s> lovely folks have not only figured out how to do it — they've made it into fonts as well.
-									I have an unfathomable amount of experience fiddling with font files from the months I spent at the beginning of the semester trying to shoehorn OpenDyslexic font into RStudio. (Don't ask me how that's going.) 
+									Before you ask, no, no I do not know how to write in circular Gallifreyan. But some folks have not only figured out how to do it — they've made it into fonts as well.
+									I've spent months learning how to integrate custom fonts into CSS files to change RStudio themes.
 									So, it was fairly straightforward figuring out how the JavaScript, HTML, and CSS work together to read downloaded font files.
 								</p>
 
@@ -103,31 +110,48 @@
 
 								<h2>Legitimate Sociogram</h2>
 								<p>
-									This is your run-of-the-mill sociogram showing characters and their directed interactions. I produced this in Gephi and exported it as a JavaScript 
+									This is a run-of-the-mill sociogram showing characters and their directed interactions. I produced this in Gephi and exported it as a JavaScript 
 									template to insert here. Users can click and drag the sociogram around, zoom in and out, and click on nodes to view connections and statistics for specific characters.
 								</p>
 
 								<iframe style="border: 0; width:100%; height: 650px; overflow: auto;" src="networks/all_target_network/index.html"></iframe>
 
+								<br/>
+								<br/>
+								<hr/>
+								<br/>
+
+								<h2>Character Degrees by Module</h2>
+								<p>Modules are color-coded in the sociogram above. Modules are groups of characters who interact more frequently with each other than with any other characters. Character degrees (the sum of the number of interactions that a character directs to other characters and the number of interactions that are directed to that character) within a module can be highly variable. After excluding single-character modules — sometimes characters are all by their lonesome because they aren't strongly connected enough to other characters to be grouped into a module with them — I used the <code>ggplot2</code> library in R to graph the degree of each character in each module.</p>
+									
+								<p>You can use the buttons below to navigate between module graphs. Module numbers are randomly assigned by Gephi, the software I used to create the sociogram above, and are not significant.</p>
+								<div class="row aln-center">
+									<a class="button small" onclick="switchIframe('visualizations/module_1.png')">Module 1</a> <br/>
+									<a class="button small" onclick="switchIframe('visualizations/module_2.png')">Module 2</a> <br/>
+									<a class="button small" onclick="switchIframe('visualizations/module_3.png')">Module 3</a> <br/>
+									<a class="button small" onclick="switchIframe('visualizations/module_6.png')">Module 6</a> <br/>
+									<a class="button small" onclick="switchIframe('visualizations/module_7.png')">Module 7</a> <br/>
+								</div>
+								<br/>
+								<div class="row aln-center">
+									<a class="button small" onclick="switchIframe('visualizations/module_9.png')">Module 9</a> <br/>
+									<a class="button small" onclick="switchIframe('visualizations/module_16.png')">Module 16</a> <br/>
+									<a class="button small" onclick="switchIframe('visualizations/module_24.png')">Module 24</a> <br/>
+									<a class="button small" onclick="switchIframe('visualizations/module_26.png')">Module 26</a> <br/>
+									<a class="button small" onclick="switchIframe('visualizations/module_27.png')">Module 27</a> <br/>
+								</div>
+								<br/>
+								<div class="row aln-center">
+									<a class="button small" onclick="switchIframe('visualizations/module_28.png')">Module 28</a> <br/>
+									<a class="button small" onclick="switchIframe('visualizations/module_38.png')">Module 38</a> <br/>
+									<a class="button small" onclick="switchIframe('visualizations/module_41.png')">Module 41</a> <br/>
+								</div>
+								<br/>
+
+								<iframe id="networkFrame" style="border: 0; width:100%; height: 650px; overflow: auto;" src="visualizations/module_1.png"></iframe>
 
 							</section>
 						</section>
-
-
-						<!-- Get Started -->
-							<section id="cta" class="main special">
-								<header class="major">
-									<!--h2>Congue imperdiet</h2-->
-									<p>"...in 900 years of time and space I haven't met anyone who wasn't important."<br />
-									- The Doctor</p>
-								</header>
-								<footer class="major">
-									<ul class="actions special">
-										<li><a href="all-book-visualizations.html" class="button primary">Explore Visualizations</a></li>
-										<!--li><a href="final-index.html" class="button">Visualization Index</a></li-->
-									</ul>
-								</footer>
-							</section>
 
 					</div>
 

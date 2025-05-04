@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Ian's Project | Fourth Doctor Visualizations</title>
+		<title>Ian's Project | Other Visualizations</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -26,17 +26,16 @@
 
 				<!-- Header -->
 				<header id="header">
-					<h1>Third Doctor Visualizations</h1>
-					<p>[TK]</p>
+					<h1>Other Visualizations</h1>
 				</header>
 
 				<!-- Nav -->
 				<nav id="nav">
 					<ul>
 						<li><a href="index.html">Home</a></li>
-						<li><a href="all-book-visualizations.html" class="active">Data</a></li>
+						<li><a href="all-book-visualizations.html">Data</a></li>
 						<!--li><a href="final-index.html">Index</a></li-->
-						<li><a href="about.html">Visualizations</a></li>
+						<li><a href="about.html"  class="active">Visualizations</a></li>
 					</ul>
 				</nav>
 
@@ -45,30 +44,61 @@
 
 						<!-- Content -->
 							<section id="content" class="main">
-								<span class="image main"><img src="images/3rd-doctor-header.jpg" alt="" /></span>
+								<span class="image main"><img src="images/sarah-jane-3.jpg" alt="" /></span>
 								
-								<h2>Something</h2>
+								<h2>UNIT Chord Diagram</h2>
+								<p><span class="image right"><img src="visualizations/final_chord_diagram.png" alt="" /></span>
+									At right is a chord diagram generated with the <code>circlize</code> and <code>ComplexHeatmap</code> packages in R depicting all interactions from my dataset with a source and a target employed by UNIT (the United Nations Intelligence Taskforce — later renamed the United Intelligence Taskforce), a military organization that featured prominently in many Third Doctor and some early Fourth Doctor serials before it was written out of the show. Interactions with certain characters (e.g. Dr. Elizabeth Shaw) are undersampled because I have not collected data from their entire run.
+								</p>
 
-								<h2>Sociograms</h2>
-								<div class="row aln-center">
-									<a class="button small" onclick="switchIframe('networks/target_002_network/index.html')">The Android Invasion</a> <br/>
-									<a class="button small" onclick="switchIframe('networks/target_003_network/index.html')">The Androids of Tara</a> <br/>
-									<a class="button small" onclick="switchIframe('networks/target_004_network/index.html')">The Ark in Space</a> <br/>
-									<a class="button small" onclick="switchIframe('networks/target_005_network/index.html')">The Armageddon Factor</a> <br/>
-									<a class="button small" onclick="switchIframe('networks/target_007_network/index.html')">The Brain of Morbius</a> <br/>
-								</div>
+								<h2>Comparison of UNIT Characters' Degrees</h2>
+								<p>
+									A character's degree is the sum of their in-degree (the number of interactions other characters direct to them) and out-degree (the number of interactions they direct to other characters). I generated these boxplots with the <code>ggplot2</code> package in R. They display the same subset of data as the chord diagram above; every interaction in this subset includes a source and target from UNIT. The adjusted p-values displayed above each boxplot are p-values adjusted with a Bonferonni correction after I ran the following one-tailed t-tests in R:
+								</p>
+								<p><span class="image left"><img src="visualizations/unit_boxplot.png" alt="" /></span>
+
+									<i>Source degree vs. target degree:</i>
+									<br/>
+									Null hypothesis: source degree = target degree
+									<br/>
+									Alternative hypothesis: source degree > target degree
+									<br/>
+									Results: The adjusted p-value indicates no significance at an alpha level of 0.05. I fail to reject the null hypothesis.
+								</p>
 								<br/>
-								<div class="row aln-center">
-									<a class="button small" onclick="switchIframe('networks/target_011_network/index.html')">The Creature from the Pit</a> <br/>
-									<a class="button small" onclick="switchIframe('networks/target_027_network/index.html')">Genesis of the Daleks</a> <br/>
-									<a class="button small" onclick="switchIframe('networks/target_028_network/index.html')">The Giant Robot</a> <br/>
-									<a class="button small" onclick="switchIframe('networks/target_030_network/index.html')">The Hand of Fear</a> <br/>
-									<a class="button small" onclick="switchIframe('networks/target_040_network/index.html')">The Loch Ness Monster</a> <br/>
-								</div>
+								<p>
+									<i>Source in-degree vs. target in-degree:</i>
+									<br/>
+									Null hypothesis: source in-degree = target in-degree
+									<br/>
+									Alternative hypothesis: source in-degree > target in-degree
+									<br/>
+									Results: The adjusted p-value indicates a significantly higher source in-degree at an alpha level of 0.05. I reject the null hypothesis.
+								</p>
 								<br/>
-
-								<iframe id="networkFrame" style="border: 0; width:100%; height: 650px; overflow: auto;" src="networks/target_008_network/index.html"></iframe>
-
+								<p>
+									<i>Source out-degree vs. target out-degree:</i>
+									<br/>
+									Null hypothesis: source out-degree = target out-degree
+									<br/>
+									Alternative hypothesis: source out-degree > target out-degree
+									<br/>
+									Results: The adjusted p-value indicates no significance at an alpha level of 0.05. I failt to reject the null hypothesis
+								</p>
+								<p>
+									<i>Discussion:</i>
+									<br/>
+									Source degree and target degree in interactions that feature only UNIT characters in both the source and target position are not significantly different. This indicates that UNIT characters are interacting more or less equally overall — for most characters, similar numbers of characters interact with them and they interact with similar numbers of characters. 
+									I expect that this result can be partly attributed to the fact that this subset of my data includes tens of thousands of lines of interactions in which the source and target flip, and excludes interactions with more minor characters who are more likely to only occupy one of those positions. Essentially, these data feature the same characters in both positions more or less equally.
+								</p>
+								<p>
+									Source out-degree and target out-degree are also similar. This indicates that all characters in this subset of my data are initiating interactions with roughly the same number of characters the same number of times. Again, this is most likely the result of undersampling in my data; I am representing very few characters in this subset of my data.
+								</p>
+								<p>
+									However, source in-degree and target in-degree vary, with source in-degree being significantly higher than target in-degree at an alpha level of 0.05. I suspect that characters in positions of greater power (like higher-ranking military officials in UNIT) are receiving more communication from other characters and must initiate interactions with other individuals outside of their circle of subordinates, thus simultaneously inflating their in-degree and the number of interactions they have in which they are sources.
+								</p>
+								
+								<br/>
 							</section>
 
 					</div>
